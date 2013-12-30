@@ -22,7 +22,7 @@ group :production do
 end
 
 group :development, :test do
-  gem 'sqlite3'
+  gem 'pg'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'jasmine', '~> 1.3.2'
@@ -32,16 +32,11 @@ group :development, :test do
 end
 
 group :travis do
-  gem 'sqlite3'
+  gem 'pg'
 end
 
 if ENV['TRAVIS'] == 'true'
   group :test do
-    case ENV['DB']
-    when 'postgresql'
-      gem 'pg'
-    else
-      gem 'sqlite3'
-    end
+    gem 'pg'
   end
 end
